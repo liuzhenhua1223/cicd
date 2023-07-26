@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-php-new
+  name: nginx-new
 spec:
   minReadySeconds: 2
   revisionHistoryLimit: 3

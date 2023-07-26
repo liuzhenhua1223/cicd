@@ -3,7 +3,7 @@ kind: Deployment # 资源类型为 deployment
 metadata: # 元信息
   labels: # 标签
     app: nginx-deploy # 具体的 key: value 配置形式
-  name: nginx-deployment # deployment 的名字
+  name: nginx-deploy # deployment 的名字
   namespace: default # 所在的命名空间
 spec:
   replicas: 2 # 期望副本数
