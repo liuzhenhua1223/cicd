@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-new
+  namespace: dev2
+spec:
+  minReadySeconds: 2
+  revisionHistoryLimit: 3
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 30%
+      maxUnavailable: 30%
+  selector:
+    matchExpressions:
+    - {key: app, operator: In, values: [nginx-new]}
+  template:
+    metadata:
+      labels:
+        app: nginx-new
+    spec:
+      containers:
+      - name: nginx
+        image: registry.cn-beijing.aliyuncs.com/lzh-bj/nginx:1.22
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: nginx-port
+          containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: new
+          mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: new
+        hostPath:
+          path: /new
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: new-nginx
+  namespace: dev2
+spec:
+  selector:
+    app: nginx-new
+  ports:
+  - name: nginx-port
+    port: 80
+    targetPort: 80
+    protocol: TCP
+

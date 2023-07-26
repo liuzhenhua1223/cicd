@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: new-nginx-ing
+  namespace: dev2
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "True"
+    nginx.ingress.kubernetes.io/canary-by-header: "VIP"
+    nginx.ingress.kubernetes.io/canary-by-header-value: "10"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "www.news.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: new-nginx
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /guonei
+        backend:
+          service:
+            name: new-nginx
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /guowai
+        backend:
+          service:
+            name: new-nginx
+            port:
+              number: 80
