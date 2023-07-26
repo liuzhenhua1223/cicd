@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: old-nginx-ing
+  name: old-nginx-ingress
 spec:
   ingressClassName: nginx
   rules:

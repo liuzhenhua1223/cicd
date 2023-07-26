@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: new-nginx-ing
+  name: new-nginx-ingress
   annotations:
     nginx.ingress.kubernetes.io/canary: "True"
     nginx.ingress.kubernetes.io/canary-by-header: "VIP"
