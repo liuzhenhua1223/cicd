@@ -22,7 +22,7 @@ spec:
         app: nginx-deploy
     spec: # pod 期望信息
       containers: # pod 的容器
-      - image: registry.cn-beijing.aliyuncs.com/lzh-bj/nginx:1.22
+      - image: registry.cn-beijing.aliyuncs.com/lzh-bj/nginx:1.21
         imagePullPolicy: IfNotPresent # 拉取策略
         name: nginx # 容器名称
       restartPolicy: Always # 重启策略
